@@ -1,0 +1,23 @@
+{
+  "name": "buscador",
+  "version": "1.0.0",
+  "description": "Buscador de Contenido - RealtyHome",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maincoke/project04a.git"
+  },
+  "author": "Maincoke",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maincoke/project04a/issues"
+  },
+  "homepage": "https://github.com/maincoke/project04a#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "http": "0.0.0"
+  }
+}
