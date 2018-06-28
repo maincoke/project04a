@@ -16,15 +16,14 @@ module.exports = {
             });
         });
     },
-    filterData: function(items, city) {
-        var cities = Array();
+    filterData: function(items, city, ctype, lprice, tprice) {
+        let dataFiltered = Array();
         for (let idx = 0; idx < items.length; idx++) {
-            if (items[idx].Ciudad == city) {
-                cities.push(items[idx]);
+            let itmPrice = parseFloat(items[idx].Precio.substr(1).replace(',', ''));
+            if (items[idx].Ciudad == city && items[idx].Tipo == ctype && itmPrice >= lprice && itmPrice <= tprice) {
+                dataFiltered.push(items[idx]);
             }
         }
-        //console.log(cities[0]);
-        //console.log(cities[1]);
-        return cities;
+        return dataFiltered;
     }
 }

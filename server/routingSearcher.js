@@ -13,26 +13,20 @@ Router.get('/all', (req, res) => {
         });
 });
 
-Router.post('/city', (req, res) => {
-    // POST Ciudad
-    let city = req.body.data;
+Router.post('/filter', (req, res) => {
+    // POST Personalizada
+    let city = req.body.cdad,
+        ctype = req.body.tipo,
+        lowPrice = req.body.preciobj,
+        topPrice = req.body.precioat;
     gettingData.getData()
-        .then(cityItems => {
-            /*return new Promise(reject => {
-                gettingData.filterData(cityItems, city)
-                    .then(cityItems => {
-                        resolve(cityItems)
-                    }).catch(error => {
-                        reject(error);
-                    })
-            });*/
+        .then(allItems => {
             try {
-                let fltItems = gettingData.filterData(cityItems, city);
+                let fltItems = gettingData.filterData(allItems, city, ctype, lowPrice, topPrice);
                 res.json(fltItems);
             } catch (error) {
                 throw (error);
             }
-            //}).then(cityItems => {
         }).catch(error => {
             res.sendStatus(500).json(error);
         });
