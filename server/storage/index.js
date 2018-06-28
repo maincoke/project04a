@@ -23,8 +23,8 @@ module.exports = {
                 cities.push(items[idx]);
             }
         }
-        console.log(cities[0]);
-        console.log(cities[1]);
+        //console.log(cities[0]);
+        //console.log(cities[1]);
         return cities;
     }
 }

@@ -26,8 +26,13 @@ Router.post('/city', (req, res) => {
                         reject(error);
                     })
             });*/
-        }).then(cityItems => {
-            res.json(cityItems);
+            try {
+                let fltItems = gettingData.filterData(cityItems, city);
+                res.json(fltItems);
+            } catch (error) {
+                throw (error);
+            }
+            //}).then(cityItems => {
         }).catch(error => {
             res.sendStatus(500).json(error);
         });
