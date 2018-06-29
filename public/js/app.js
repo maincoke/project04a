@@ -37,7 +37,26 @@ function renderItem(item, img = '../img/home.jpg') {
     }
 }
 
-function buscarTodos() {
+function filterOptions(data, select) {
+
+}
+
+function setOptions() {
+    queryAjax('/all', 'GET', {})
+        .done(data => {
+            let gotAll = data;
+            let allItems = gotAll.map(items => items.Ciudad);
+            let optionItems = [...new Set(allItems)];
+            console.log(allItems);
+            console.log(optionItems);
+            //renderOptions(optionItems);
+        })
+        .fail(error => {
+            console.log(error);
+        });
+}
+
+function searchAll() {
     $(".lista").children("div").remove();
     queryAjax('/all', 'GET', {})
         .done(data => {
@@ -49,12 +68,11 @@ function buscarTodos() {
         });
 }
 
-function buscarPersonal() {
+function searchCustom() {
     $('.lista').children('div').remove();
     let rango = $('#rangoPrecio').prop("value").split(";");
-    console.log(rango[0]);
-    console.log(typeof(rango[0]));
-    queryAjax('/filter', 'POST', { cdad: 'New York', tipo: 'Casa', preciobj: 2000, precioat: 40000 })
+    setOptions();
+    queryAjax('/filter', 'POST', { cdad: 'New York', tipo: 'Casa', preciobj: parseFloat(rango[0]), precioat: parseFloat(rango[1]) })
         .done(data => {
             let viewAll = data;
             viewAll.forEach(item => renderItem(item));
@@ -64,8 +82,6 @@ function buscarPersonal() {
         });
 }
 
-
-
 function setSearch() {
     let busqueda = $('#checkPersonalizada');
     let btnBusqueda = $('#buscar');
@@ -74,15 +90,15 @@ function setSearch() {
         if (this.customSearch == false) {
             this.customSearch = true
             $('#buscar').text('Ver Todos')
-            btnBusqueda.on('click', () => buscarTodos());
+            btnBusqueda.on('click', () => searchAll());
         } else {
             this.customSearch = false
             $('#buscar').text('Buscar')
-            btnBusqueda.on('click', () => buscarPersonal());
+            btnBusqueda.on('click', () => searchCustom());
         }
         $('#personalizada').toggleClass('invisible')
     });
-    btnBusqueda.on('click', () => buscarTodos());
+    btnBusqueda.on('click', () => searchAll());
 }
 
 setSearch();
