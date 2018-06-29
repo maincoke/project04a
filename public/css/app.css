@@ -7,6 +7,10 @@ nav div>h4 {
     padding-top: .5em;
 }
 
+select {
+    display: inline;
+}
+
 #buscar {
     margin: 2em 0;
 }
@@ -42,6 +46,6 @@ div.lista {
 }
 
 .select-wrapper {
-    width: 50%;
+    width: 70%;
     margin: 0 auto !important;
 }

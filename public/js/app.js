@@ -37,19 +37,26 @@ function renderItem(item, img = '../img/home.jpg') {
     }
 }
 
-function filterOptions(data, select) {
-
+function renderOptionsSelect(select, options) {
+    let getSelect = $('#' + select.toLowerCase()),
+        firstOption = select == 'Ciudad' ? 'a ' + select.toLowerCase() : ' ' + select.toLowerCase();
+    getSelect.children("option").remove();
+    getSelect.append(`<option value="" selected>Escoge un${firstOption}</option>`)
+    options.forEach(option => getSelect.append(`<option value="${option}">${option}</option>`));
 }
 
-function setOptions() {
+function setOptions(select) {
     queryAjax('/all', 'GET', {})
         .done(data => {
-            let gotAll = data;
-            let allItems = gotAll.map(items => items.Ciudad);
-            let optionItems = [...new Set(allItems)];
-            console.log(allItems);
-            console.log(optionItems);
-            //renderOptions(optionItems);
+            let gotAll = data,
+                allItems = Array();
+            if (select == 'Ciudad') {
+                allItems = gotAll.map(items => items.Ciudad);
+            } else {
+                allItems = gotAll.map(items => items.Tipo);
+            }
+            let optionItems = [...new Set(allItems)].sort();
+            renderOptionsSelect(select, optionItems);
         })
         .fail(error => {
             console.log(error);
@@ -71,7 +78,6 @@ function searchAll() {
 function searchCustom() {
     $('.lista').children('div').remove();
     let rango = $('#rangoPrecio').prop("value").split(";");
-    setOptions();
     queryAjax('/filter', 'POST', { cdad: 'New York', tipo: 'Casa', preciobj: parseFloat(rango[0]), precioat: parseFloat(rango[1]) })
         .done(data => {
             let viewAll = data;
@@ -89,11 +95,13 @@ function setSearch() {
         btnBusqueda.off();
         if (this.customSearch == false) {
             this.customSearch = true
-            $('#buscar').text('Ver Todos')
+            $('#buscar').text('Ver Todos');
             btnBusqueda.on('click', () => searchAll());
         } else {
             this.customSearch = false
-            $('#buscar').text('Buscar')
+            $('#buscar').text('Buscar');
+            setOptions('Tipo');
+            setOptions('Ciudad');
             btnBusqueda.on('click', () => searchCustom());
         }
         $('#personalizada').toggleClass('invisible')
