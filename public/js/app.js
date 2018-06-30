@@ -6,6 +6,7 @@ $("#rangoPrecio").ionRangeSlider({
     max: 100000,
     from: 1000,
     to: 20000,
+    step: 100,
     prefix: "$"
 });
 // Funcion de obtencion de datos desde el servidor //
