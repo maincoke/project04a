@@ -15,6 +15,7 @@
 </head>
 
 <body>
+    <!-- Barra de Titulo del Buscador -->
     <div class="navbar-fixed">
         <nav>
             <div class="blue darken-3 nav-wrapper center-align">
@@ -22,10 +23,12 @@
             </div>
         </nav>
     </div>
+    <!-- Cuadro ventana para seleccion de busquedas de viviendas -->
     <div class="row">
         <div class="col m4">
             <div class="card horizontal">
                 <div class="container center-align">
+                    <!-- Switche para la eleccion de tipo de busqueda / Por defecto: Ver todos -->
                     <div class="switch">
                         <h5>Busqueda Personalizada: </h5>
                         <label>
@@ -35,16 +38,16 @@
                         Activada
                       </label>
                     </div>
-                    <!--  Busqueda personalizada -->
+                    <!--  Busqueda personalizada / Visualizacion de elementos para la seleccion y filtrado de viviendas -->
                     <div class="row invisible" id="personalizada">
                         <div class="row" class="select-wrapper">Ciudad:
                             <select id="ciudad">
-                              <!--<option value="" selected>Escoge una ciudad</option> -->
+                              <!--<option value="" selected>Escoge una ciudad</option> ** Opcion agregada por JScript -->
                             </select>
                         </div>
                         <div class="row">Tipo:
                             <select id="tipo">
-                              <!-- <option value="" selected>Escoge un tipo</option> -->
+                              <!-- <option value="" selected>Escoge un tipo</option> ** Opcion agregada por JScript -->
                             </select>
                         </div>
                         <div class="row">
@@ -56,9 +59,9 @@
                 </div>
             </div>
         </div>
-
+        <!-- Contenedor donde se muestran los items de las viviendas de la busqueda realizada -->
         <div class="col m8 lista">
-            <!-- Property
+            <!-- ** Modelo de Codigo HTML que se utiliza para la renderizacion de los items de vivienda **
           <div class="card horizontal">
             <div class="card-image"><img src="images/home.jpg"></div>
             <div class="card-stacked">
@@ -70,8 +73,8 @@
                 <div><b>Precio: </b><p></p></div>
                 <div><b>Tipo: </b><p></p></div>
               </div>
-              <div class="card-action right-align"><a href="#">Ver más</a></div>
-            </div>
+              <div class="card-action right-align"><a href="#">Ver más</a></div> <== ** {Por JScript se utiliza un boton en 
+            </div>                                                                   ** lugar de un enlace }
           </div>
         -->
         </div>
