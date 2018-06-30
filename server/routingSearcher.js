@@ -1,8 +1,10 @@
-// Funcionalidad de Router mediante la creacion de Servidor con paquete Express --->
+/**
+ * Funcionalidad y exportacion del Router mediante la creacion del Servidor con paquete Express -->
+ */
 let express = require('express');
 let gettingData = require('./storage');
 let Router = express.Router();
-
+// Enrutamiento para la lectura y obtencion de todos los items de datos en el archivo json //
 Router.get('/all', (req, res) => {
     // GET Ver Todos
     gettingData.getData()
@@ -12,7 +14,7 @@ Router.get('/all', (req, res) => {
             res.sendStatus(500).json(error);
         });
 });
-
+// Enrutamiento para el filtrado de los items de datos para las busquedas personalizadas //
 Router.post('/filter', (req, res) => {
     // POST Personalizada
     let city = req.body.cdad,

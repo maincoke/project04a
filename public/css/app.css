@@ -15,6 +15,14 @@ select {
     margin: 2em 0;
 }
 
+#vermas {
+    background-color: grey;
+    margin: 1em 0;
+    font-size: 1em;
+    border-radius: 10px !important;
+    text-transform: none;
+}
+
 .card-content {
     padding: 20px !important;
 }
