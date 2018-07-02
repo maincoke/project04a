@@ -7,10 +7,6 @@ nav div>h4 {
     padding-top: .5em;
 }
 
-select {
-    display: inline;
-}
-
 #buscar {
     margin: 2em 0;
 }

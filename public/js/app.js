@@ -63,9 +63,12 @@ function showingItems(items) {
 function renderOptionsSelect(select, options) {
     let getSelect = $('#' + select.toLowerCase()),
         firstOption = select == 'Ciudad' ? 'a ' + select.toLowerCase() : ' ' + select.toLowerCase();
+    getSelect.material_select();
+    getSelect.on('contentChanged', function() { $(this).material_select() });
     getSelect.children("option").remove();
     getSelect.append(`<option value="" selected>Escoge un${firstOption}</option>`)
     options.forEach(option => getSelect.append(`<option value="${option}">${option}</option>`));
+    getSelect.trigger('contentChanged');
 }
 // Inicializador y filtrado de las opciones para los elementos Selects de la busqueda personalizada //
 function setOptions(select) {
